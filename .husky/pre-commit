@@ -1,0 +1,11 @@
+# 失败即退出
+set -e
+
+# 让所有工具进入非交互模式（很多 CLI 在 CI 下更稳）
+export CI=1
+
+echo "🔎 Running lint-staged..."
+npx --yes lint-staged
+
+echo "🔡 Type-checking..."
+npx --yes tsc --noEmit
