@@ -6,16 +6,7 @@ import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { FlatCompat } from '@eslint/eslintrc';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+import nextPlugin from '@next/eslint-plugin-next'; // ✅ 直接用插件而不是 compat
 
 // 拿到各插件的 recommended 规则集（Flat Config 下自己拼）
 const reactRecommended = react.configs.recommended?.rules ?? {};
@@ -25,7 +16,9 @@ const importRecommended = importPlugin.configs.recommended?.rules ?? {};
 const importTypescript = importPlugin.configs.typescript?.rules ?? {};
 
 const eslintConfig = [
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+  // ✅ 直接挂上 Next 的 core-web-vitals flat config
+  nextPlugin.configs['core-web-vitals'],
+
   {
     ignores: ['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts'],
   },
@@ -58,11 +51,7 @@ const eslintConfig = [
     settings: {
       react: { version: 'detect' },
       'import/resolver': {
-        alias: {
-          map: [['@', './src']], // ✅ 告诉 ESLint “@” 代表 src
-          extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        },
-        typescript: { alwaysTryTypes: true },
+        typescript: { project: true, alwaysTryTypes: true },
         node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
       },
     },

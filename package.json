@@ -12,17 +12,19 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@next/eslint-plugin-next": "^16.0.3",
     "@radix-ui/react-slot": "^1.2.3",
     "autoprefixer": "^10.4.21",
     "axios": "^1.12.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "globals": "^16.5.0",
     "lucide-react": "^0.545.0",
-    "next": "15.5.5",
+    "next": "16.0.3",
     "next-themes": "^0.4.6",
     "postcss": "^8.5.6",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "sonner": "^2.0.7",
     "swr": "^2.3.6",
     "tailwind-merge": "^3.3.1",
@@ -35,10 +37,10 @@
     "@eslint/js": "^9.37.0",
     "@tailwindcss/postcss": "^4.1.14",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "19.2.6",
+    "@types/react-dom": "19.2.3",
     "eslint": "^9.37.0",
-    "eslint-config-next": "15.5.5",
+    "eslint-config-next": "16.0.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
@@ -59,5 +61,9 @@
     "*.{js,jsx,json,md,css,scss}": [
       "prettier --write"
     ]
+  },
+  "resolutions": {
+    "@types/react": "19.2.6",
+    "@types/react-dom": "19.2.3"
   }
 }
